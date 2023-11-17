@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+<title>Kotikokin reseptivihko</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1>lista resepteistä</h1>
+
+<table>
+	<tr>
+		<th>Nimi</th>
+		<th>Tyyppi</th>
+	</tr>
+	<tr th:each = "resepti : ${reseptit}">
+		<td th:text="${resepti.nimi}"></td>
+		<td th:text="${resepti.tyyppi}"></td>
+	</tr>
+	</table>
+
+</body>
+</html> 
