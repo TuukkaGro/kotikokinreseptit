@@ -11,16 +11,16 @@ public class Resepti {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String nimi;
-	private String valmistusohje;
+	private String tyyppi;
 	
 	public Resepti() {
 		super();
 	}
 
-	public Resepti(String nimi, String valmistusohje) {
+	public Resepti(String nimi, String tyyppi) {
 		super();
 		this.nimi = nimi;
-		this.valmistusohje = valmistusohje;
+		this.tyyppi = tyyppi;
 	}
 
 	public Long getId() {
@@ -39,13 +39,20 @@ public class Resepti {
 		this.nimi = nimi;
 	}
 
-	public String getValmistusohje() {
-		return valmistusohje;
+	public String getTyyppi() {
+		return tyyppi;
 	}
 
-	public void setValmistusohje(String valmistusohje) {
-		this.valmistusohje = valmistusohje;
+	public void setTyyppi(String tyyppi) {
+		this.tyyppi = tyyppi;
 	}
+
+	@Override
+	public String toString() {
+		return "Resepti [id=" + id + ", nimi=" + nimi + ", valmistusohje=" + tyyppi + "]";
+	}
+	
+	
 	
 	
 
