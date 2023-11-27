@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Resepti {
@@ -14,7 +16,9 @@ public class Resepti {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String nimi;
-	private String tyyppi;
+	@ManyToOne
+	@JoinColumn(name = "tyyppiid")
+	private Tyyppi tyyppi;
 	private List<String> ainesosat;
 	private List<String> vaiheet;
 	
@@ -23,13 +27,19 @@ public class Resepti {
 	}
 
 
-	public Resepti(String nimi, String tyyppi, List<String> ainesosat, List<String> vaiheet) {
+	
+
+
+	public Resepti(String nimi, Tyyppi tyyppi, List<String> ainesosat, List<String> vaiheet) {
 		super();
 		this.nimi = nimi;
 		this.tyyppi = tyyppi;
 		this.ainesosat = ainesosat;
 		this.vaiheet = vaiheet;
 	}
+
+
+
 
 
 	public List<String> getAinesosat() {
@@ -56,11 +66,11 @@ public class Resepti {
 		this.nimi = nimi;
 	}
 
-	public String getTyyppi() {
+	public Tyyppi getTyyppi() {
 		return tyyppi;
 	}
 
-	public void setTyyppi(String tyyppi) {
+	public void setTyyppi(Tyyppi tyyppi) {
 		this.tyyppi = tyyppi;
 	}
 	
