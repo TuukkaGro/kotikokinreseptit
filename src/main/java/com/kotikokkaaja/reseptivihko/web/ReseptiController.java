@@ -28,15 +28,17 @@ public class ReseptiController {
 		return "reseptilista";
 		}
 	
-	// Palauttaa yksittäisen reseptin sivun jossa näkyvät tarvittavat ainekset ja valmistusohje
+	// Palauttaa yksittäisen reseptin sivun jossa näkyvät tarvittavat ainekset ja valmistus vaiheet
 	
 	@GetMapping("/resepti/{id}")
 	public String resepti(@PathVariable("id") Long reseptiId, Model model) {
 		Optional<Resepti> reseptioptional = repository.findById(reseptiId);
 		Resepti resepti = reseptioptional.get();
-		List<String> ainesosat = resepti.getAinesosat(); 
+		List<String> ainesosat = resepti.getAinesosat();
+		List<String> vaiheet = resepti.getVaiheet();
 		model.addAttribute("resepti", resepti);
 		model.addAttribute("ainesosat", ainesosat);
+		model.addAttribute("vaiheet", vaiheet);
 		return "resepti";
 		}
 	

@@ -16,18 +16,21 @@ public class Resepti {
 	private String nimi;
 	private String tyyppi;
 	private List<String> ainesosat;
+	private List<String> vaiheet;
 	
 	public Resepti() {
 		super();
 	}
 
-	
-	public Resepti(String nimi, String tyyppi, List<String> ainesosat) {
+
+	public Resepti(String nimi, String tyyppi, List<String> ainesosat, List<String> vaiheet) {
 		super();
 		this.nimi = nimi;
 		this.tyyppi = tyyppi;
 		this.ainesosat = ainesosat;
+		this.vaiheet = vaiheet;
 	}
+
 
 	public List<String> getAinesosat() {
 		return ainesosat;
@@ -67,6 +70,24 @@ public class Resepti {
 		}
 		ainesosat.add(ainesosa);
 	}
+	
+
+	public List<String> getVaiheet() {
+		return vaiheet;
+	}
+
+
+	public void setVaiheet(List<String> vaiheet) {
+		this.vaiheet = vaiheet;
+	}
+	
+	public void lisaaVaiheet (String vaihe) {
+		if (vaiheet == null) {
+			vaiheet = new ArrayList<>();
+		}
+		vaiheet.add(vaihe);
+	}
+
 
 	@Override
 	public String toString() {
