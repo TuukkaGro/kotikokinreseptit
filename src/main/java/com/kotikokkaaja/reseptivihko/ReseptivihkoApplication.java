@@ -24,10 +24,18 @@ public class ReseptivihkoApplication {
 	public CommandLineRunner reseptiDemo (ReseptiRepository repository) {
 		return (args) -> {
 			log.info("lisätään parit reseptit");
-			repository.save(new Resepti("Omenapaistos", "Leivonnainen"));
-			repository.save(new Resepti("Kanasalaatti", "Salaatti"));
-			repository.save(new Resepti("Makaronilaatikko", "Pääruoka"));
+			//repository.save(new Resepti("Omenapaistos", "Leivonnainen", null));
+		
+			Resepti resepti1 = new Resepti("Omenapaistos", "Leivonnainen", null);
+			resepti1.lisaaAinesosat("kananmuna");
+			Resepti resepti2 = new Resepti("Kanasalaatti", "Salaatti", null);
+			resepti2.lisaaAinesosat("kananrintapalat");
+			Resepti resepti3 = new Resepti("Makaronilaatikko", "Pääruoka", null);
+			resepti3.lisaaAinesosat("Makaroni");
 			
+			repository.save(resepti1);
+			repository.save(resepti2);
+			repository.save(resepti3);
 			
 			log.info("Etsitään reseptit");
 			for (Resepti resepti : repository.findAll()) {
