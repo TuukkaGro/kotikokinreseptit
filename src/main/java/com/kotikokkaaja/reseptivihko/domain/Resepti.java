@@ -27,9 +27,6 @@ public class Resepti {
 	}
 
 
-	
-
-
 	public Resepti(String nimi, Tyyppi tyyppi, List<String> ainesosat, List<String> vaiheet) {
 		super();
 		this.nimi = nimi;
