@@ -32,7 +32,7 @@ public class ReseptiController {
 	@GetMapping("/poista/{id}")
 	public String poistaResepti(@PathVariable("id")Long reseptiId, Model model) {
 		repository.deleteById(reseptiId);
-		return "redirect:../reseptilista";
+		return "redirect:/reseptilista";
 	}
 		
 		
@@ -41,10 +41,9 @@ public class ReseptiController {
 		
 	@PostMapping("/save")
 	public String save(Resepti resepti){
-		resepti.setAinesosat(null);
-		resepti.setVaiheet(null);
-		repository.save(resepti);
-		return"redirect:../reseptilista";
+			repository.save(resepti);
+		
+		return"redirect:/reseptilista";
 	}
 	
 	// palauttaa sivun jossa voi listä uuden reseptin

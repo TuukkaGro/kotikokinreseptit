@@ -35,10 +35,6 @@ public class Resepti {
 		this.vaiheet = vaiheet;
 	}
 
-
-
-
-
 	public List<String> getAinesosat() {
 		return ainesosat;
 	}
@@ -98,7 +94,8 @@ public class Resepti {
 
 	@Override
 	public String toString() {
-		return "Resepti [id=" + id + ", nimi=" + nimi + ", valmistusohje=" + tyyppi + "]";
+		return "Resepti [id=" + id + ", nimi=" + nimi + ", tyyppi=" + tyyppi + ", ainesosat=" + ainesosat + ", vaiheet="
+				+ vaiheet + "]";
 	}
 	
 	

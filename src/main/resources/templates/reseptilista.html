@@ -16,7 +16,7 @@
 	</tr>
 	<tr th:each = "resepti : ${reseptit}">
 		<td th:text="${resepti.nimi}"></td>
-		<td th:text="${resepti.tyyppi != null ? resepti.tyyppi.nimi : 'Null'}"></td>
+		<td th:text="${resepti.tyyppi.nimi}"></td>
 		<td><a th:href="@{/resepti/{id}(id=${resepti.id})}">Ohje</a></td>
 		<td><a th:href="@{/poista/{id}(id=${resepti.id})}">Poista</a></td>
 	</tr>

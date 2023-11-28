@@ -21,13 +21,13 @@ public class Tyyppi {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tyyppi")
 	private List<Resepti> reseptit;
+	
 	public Tyyppi() {
 		super();
 	}
-	public Tyyppi(String nimi, List<Resepti> reseptit) {
+	public Tyyppi(String nimi) {
 		super();
 		this.nimi = nimi;
-		this.reseptit = reseptit;
 	}
 	public String getNimi() {
 		return nimi;
@@ -40,6 +40,14 @@ public class Tyyppi {
 	}
 	public void setReseptit(List<Resepti> reseptit) {
 		this.reseptit = reseptit;
+	}
+	
+	
+	public Long getTyyppiid() {
+		return tyyppiid;
+	}
+	public void setTyyppiid(Long tyyppiid) {
+		this.tyyppiid = tyyppiid;
 	}
 	@Override
 	public String toString() {

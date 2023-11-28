@@ -29,13 +29,13 @@ public class ReseptivihkoApplication {
 			log.info("lisätään resepti tyyppejä");
 			// lisätään tyyppejä H2-tietokantaan
 			
-			Tyyppi tyyppi1 = new Tyyppi("Leivonnainen", null);
+			Tyyppi tyyppi1 = new Tyyppi("Leivonnainen");
 			trepository.save(tyyppi1);
 			
-			Tyyppi tyyppi2 = new Tyyppi("Salaatti", null);
+			Tyyppi tyyppi2 = new Tyyppi("Salaatti");
 			trepository.save(tyyppi2);
 			
-			Tyyppi tyyppi3 = new Tyyppi("Pääruoka", null);
+			Tyyppi tyyppi3 = new Tyyppi("Pääruoka");
 			trepository.save(tyyppi3);
 			
 			

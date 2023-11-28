@@ -15,9 +15,10 @@
 <input type="text" id="nimi" th:field="*{nimi}" />
 
 <label for="tyyppilist">Tyyppi</label>
-<select id="tyyppilist" th:field="*{tyyppi}">
-<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi}" th:text="${tyyppi.nimi}"></option>
+<select id="tyyppilist" th:field="*{tyyppi.tyyppiid}">
+<option th:each="tyyppi:${tyypit}" th:value="${tyyppi.tyyppiid}" th:text="${tyyppi.nimi}"></option>
 </select>
+
 
 <input type="submit" value="Save"></input>
 </form>
