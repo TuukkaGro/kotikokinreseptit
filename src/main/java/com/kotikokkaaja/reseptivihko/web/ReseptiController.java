@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kotikokkaaja.reseptivihko.domain.Resepti;
 import com.kotikokkaaja.reseptivihko.domain.ReseptiRepository;
@@ -26,14 +28,21 @@ public class ReseptiController {
 		@Autowired 
 		private TyyppiRepository trepository;
 		
+	// palauttaa login sivun
+	@RequestMapping(value="/login")
+	public String login() {	
+		return "login";
+	}
+		
 	// lisää ainesosa reseptiin
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/lisaaainesosa/{reseptiId}")
 	public String lisaaAinesosa(@PathVariable Long reseptiId, Model model) {
 		model.addAttribute("resepti", repository.findById(reseptiId));
         model.addAttribute("ainesosat", repository.findById(reseptiId).get().getAinesosat());
 		return "lisaaainesosa";
 	}
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/lisaaainesosa/{reseptiId}")
     public String tallennaAinesosa(@PathVariable Long reseptiId, String uusiAinesosa, Model model) {
         Resepti resepti = repository.findById(reseptiId).get();
@@ -44,14 +53,14 @@ public class ReseptiController {
 	
 	
 	// lisää vaihe reseptiin 
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/lisaavaihe/{reseptiId}")
     public String lisaaVaihe(@PathVariable Long reseptiId, Model model) {
         model.addAttribute("resepti", repository.findById(reseptiId));
         model.addAttribute("vaiheet", repository.findById(reseptiId).get().getVaiheet());
         return "lisaavaihe";
     }
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/lisaavaihe/{reseptiId}")
     public String tallennaVaihe(@PathVariable Long reseptiId, String uusiVaihe, Model model) {
         Resepti resepti = repository.findById(reseptiId).get();
@@ -61,7 +70,7 @@ public class ReseptiController {
     }
 		
 	//	poistaa reseptin ja palauttaa reseptilistan
-		
+	@PreAuthorize("hasAuthority('ADMIN')")	
 	@GetMapping("/poista/{id}")
 	public String poistaResepti(@PathVariable("id")Long reseptiId, Model model) {
 		repository.deleteById(reseptiId);
@@ -80,7 +89,7 @@ public class ReseptiController {
 	}
 	
 	// palauttaa sivun jossa voi listä uuden reseptin
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/lisaa")
 	public String lisaaResepti(Model model) {
 		model.addAttribute("resepti", new Resepti());

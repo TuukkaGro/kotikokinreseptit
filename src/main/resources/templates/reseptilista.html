@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
-<html xmlns:th="http//www.thymeleaf.org">
+<html xmlns:th="http//www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <title>Kotikokin reseptivihko</title>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,6 +9,15 @@
 </head>
 <body>
 <h1>lista resepteistä</h1>
+
+<div>
+		<h3>Olet kirjautunut käyttäjällä: <span  sec:authentication="name"></span></h3>    	
+	</div>
+	<div>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Kirjaudu ulos" class="btn btn-primary"/>
+		</form>
+	</div>
 
 <table>
 	<tr>
@@ -18,11 +28,11 @@
 		<td th:text="${resepti.nimi}"></td>
 		<td th:text="${resepti.tyyppi.nimi}"></td>
 		<td><a th:href="@{/resepti/{id}(id=${resepti.id})}">Ohje</a></td>
-		<td><a th:href="@{/poista/{id}(id=${resepti.id})}">Poista</a></td>
+		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poista/{id}(id=${resepti.id})}">Poista</a></td>
 	</tr>
 	</table>
 	
-	<a href="/lisaa" class="btn btn-primary">Lisää uusi resepti</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/lisaa" class="btn btn-primary">Lisää uusi resepti</a>
 	
 
 </body>

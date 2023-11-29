@@ -8,8 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.kotikokkaaja.reseptivihko.domain.ReseptiRepository;
+import com.kotikokkaaja.reseptivihko.domain.AppUserRepository;
 import com.kotikokkaaja.reseptivihko.domain.Resepti;
 import com.kotikokkaaja.reseptivihko.domain.Tyyppi;
+import com.kotikokkaaja.reseptivihko.domain.AppUser;
 import com.kotikokkaaja.reseptivihko.domain.TyyppiRepository;
 
 
@@ -23,8 +25,14 @@ public class ReseptivihkoApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner reseptiDemo (ReseptiRepository repository, TyyppiRepository trepository) {
+	public CommandLineRunner reseptiDemo (ReseptiRepository repository, TyyppiRepository trepository, AppUserRepository urepository) {
 		return (args) -> {
+			
+			// lisätään käyttäjiä H2-tietokantaan
+			AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
 			
 			log.info("lisätään resepti tyyppejä");
 			// lisätään tyyppejä H2-tietokantaan
