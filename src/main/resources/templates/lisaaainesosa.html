@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+<title>Kotikokin reseptivihko</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1>Lisää ainesosa</h1>
+
+<table>
+    <tr>
+        <th>Ainesosat</th>
+    </tr>
+    <tr th:each = "ainesosa : ${ainesosat}">
+        <td th:text = "${ainesosa}"></td>
+    </tr>
+    </table>
+    
+     <form th:action="@{/lisaaainesosa/{reseptiId}(reseptiId=${reseptiId})}" method="post">
+    <input type="hidden" name="reseptiId" th:value="${reseptiId}" />
+    <label for="uusiAinesosa">Uusi Ainesosa:</label>
+    <input type="text" id="uusiAinesosa" name="uusiAinesosa" />
+    <input type="submit" value="Lisää Ainesosa" />
+	</form>
+	
+	<div>
+	<input type="hidden" name="reseptiId" th:value="${reseptiId}" />
+        <a th:href="@{/resepti/{id}(id=${reseptiId})}">Ohje</a>
+    </div>
+    
+
+</body>
+</html>

@@ -3,46 +3,81 @@
 <html xmlns:th="http//www.thymeleaf.org">
 <head>
 <title>Kotikokin reseptivihko</title>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style>
 table {
-  float: left;
-  margin: 40px;
-} 
+    float: left;
+    margin: 40px;
+}
+
+div {
+    margin: 40px;
+    clear: both;
+}
 </style>
 </head>
 <body>
 
-<h1 th:text="${resepti.nimi}">Ohje</h1>
+    <h1 th:text="${resepti.nimi}">Ohje</h1>
 
-<table>
-	<tr>
-		<th>Ainesosat</th>
-	</tr>
-	<tr 
-	th:each = "ainesosa : ${ainesosat}">
-	<td th:text="${ainesosa}"></td>	
-	</tr>
-	</table>
-	
-	<table>
-	<tr>
-		<th>Vaiheet</th>
-	</tr>
-	
-	<tr th:each = "vaihe : ${vaiheet}">
-		<td th:text="${vaihe}"></td>
-	</tr>
-	
-	</table>
-	
-	
-	<a href="/reseptilista" class="btn btn-primary">Reseptilista</a>
-	
-	
+    <table>
 
+        <tbody>
+            <tr>
+                <th>Ainesosat</th>
+            </tr>
 
+            <tr th:each="ainesosa : ${ainesosat}">
+                <td th:text="${ainesosa}"></td>
 
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th></th>
+            </tr>
+            <tr>
+                 <td>
+                <a th:href="@{'/lisaaainesosa/' + ${resepti.id}}">
+                        <button>Lisää ainesosia</button>
+                </a>
+                    
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Vaiheet</th>
+
+            </tr>
+
+            <tr th:each="vaihe : ${vaiheet}">
+                <td th:text="${vaihe}"></td>
+
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                <a th:href="@{'/lisaavaihe/' + ${resepti.id}}">
+                        <button>Lisää vaiheita</button>
+                </a>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a href="/reseptilista" class="btn btn-primary">Reseptilista</a>
+    </div>
 
 </body>
-</html> 
+</html>

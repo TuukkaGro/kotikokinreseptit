@@ -26,6 +26,39 @@ public class ReseptiController {
 		@Autowired 
 		private TyyppiRepository trepository;
 		
+	// lisää ainesosa reseptiin
+	
+	@GetMapping("/lisaaainesosa/{reseptiId}")
+	public String lisaaAinesosa(@PathVariable Long reseptiId, Model model) {
+		model.addAttribute("resepti", repository.findById(reseptiId));
+        model.addAttribute("ainesosat", repository.findById(reseptiId).get().getAinesosat());
+		return "lisaaainesosa";
+	}
+	@PostMapping("/lisaaainesosa/{reseptiId}")
+    public String tallennaAinesosa(@PathVariable Long reseptiId, String uusiAinesosa, Model model) {
+        Resepti resepti = repository.findById(reseptiId).get();
+        resepti.lisaaAinesosat(uusiAinesosa);
+        repository.save(resepti);
+        return "redirect:/lisaaainesosa/{reseptiId}";
+    }
+	
+	
+	// lisää vaihe reseptiin 
+	
+	@GetMapping("/lisaavaihe/{reseptiId}")
+    public String lisaaVaihe(@PathVariable Long reseptiId, Model model) {
+        model.addAttribute("resepti", repository.findById(reseptiId));
+        model.addAttribute("vaiheet", repository.findById(reseptiId).get().getVaiheet());
+        return "lisaavaihe";
+    }
+	
+	@PostMapping("/lisaavaihe/{reseptiId}")
+    public String tallennaVaihe(@PathVariable Long reseptiId, String uusiVaihe, Model model) {
+        Resepti resepti = repository.findById(reseptiId).get();
+        resepti.lisaaVaiheet(uusiVaihe);
+        repository.save(resepti);
+        return "redirect:/lisaavaihe/{reseptiId}";
+    }
 		
 	//	poistaa reseptin ja palauttaa reseptilistan
 		
