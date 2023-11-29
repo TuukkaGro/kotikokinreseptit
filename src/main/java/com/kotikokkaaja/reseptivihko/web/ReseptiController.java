@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kotikokkaaja.reseptivihko.domain.Resepti;
 import com.kotikokkaaja.reseptivihko.domain.ReseptiRepository;
@@ -51,7 +52,6 @@ public class ReseptiController {
         return "redirect:/lisaaainesosa/{reseptiId}";
     }
 	
-	
 	// lisää vaihe reseptiin 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/lisaavaihe/{reseptiId}")
@@ -68,6 +68,7 @@ public class ReseptiController {
         repository.save(resepti);
         return "redirect:/lisaavaihe/{reseptiId}";
     }
+	
 		
 	//	poistaa reseptin ja palauttaa reseptilistan
 	@PreAuthorize("hasAuthority('ADMIN')")	
